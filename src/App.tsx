@@ -1,25 +1,31 @@
-import { ChakraProvider, Box, Button, Stack, Heading } from '@chakra-ui/react';
-import { DirectionProvider, useDirection } from './contexts/DirectionContext';
+import { ChakraProvider, Box } from '@chakra-ui/react';
+import { DirectionProvider } from './contexts/DirectionContext';
+import { Hero } from './components/landing/Hero';
+import { HowItWorks } from './components/landing/HowItWorks';
+import { Benefits } from './components/landing/Benefits';
+import { CTAFooter } from './components/landing/CTAFooter';
 import theme from './theme/theme';
-
-function MainContent() {
-  const { direction, toggleDirection } = useDirection();
-
-  return (
-    <Box minH="100vh" p={8} dir={direction}>
-      <Stack spacing="8">
-        <Heading>Welcome to Scan to Score</Heading>
-        <Button onClick={toggleDirection}>Switch to {direction === 'ltr' ? 'RTL' : 'LTR'}</Button>
-      </Stack>
-    </Box>
-  );
-}
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <DirectionProvider>
-        <MainContent />
+        <Box 
+          width="100%"
+          maxWidth="100vw"
+          margin="0 auto"
+          overflow="hidden"
+        >
+          <Hero />
+          <HowItWorks />
+          <Benefits />
+          <CTAFooter />
+        </Box>
       </DirectionProvider>
     </ChakraProvider>
   );
